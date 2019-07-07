@@ -1,0 +1,3 @@
+<div class="filters-bar-container">
+  <filter-button (click)="showOptions($event, myFilter)" *ngFor="let myFilter of allFilters" [name]="myFilter.name" [options]="myFilter.options" [selected]="selectedFilters.length"></filter-button>
+</div>

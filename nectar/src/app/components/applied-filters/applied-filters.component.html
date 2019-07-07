@@ -1,0 +1,4 @@
+<div class="applied-filters-container">
+  Applied Filters: <filter-option-selected *ngFor="let appliedFilter of appliedFilterOptions" [filterOption]="appliedFilter"></filter-option-selected>
+  <button (click)="clearAll()">ClearAll</button>
+</div>

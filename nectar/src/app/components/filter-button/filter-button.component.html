@@ -1,0 +1,4 @@
+<button (click)="showOptions()" class="filter-button">
+  {{name}}
+  <ng-container *ngIf="selected > 0">({{selected}})</ng-container>
+</button>

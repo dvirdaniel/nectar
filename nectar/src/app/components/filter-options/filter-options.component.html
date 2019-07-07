@@ -1,0 +1,17 @@
+<div class="filter-options-container">
+    <mat-dialog-content>
+      <button *ngFor="let filterOption of allFilterOptions" (click)="selectFilterOption(filterOption)">{{filterOption.title}}</button>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <table width="100%">
+        <tr>
+          <td align="left">
+            <button mat-raised-button (click)="onCancel()">Cancel</button>
+          </td>
+          <td align="right">
+            <button mat-raised-button (click)="onApply()">Apply</button>
+          </td>
+        </tr>
+      </table>
+    </mat-dialog-actions>
+</div>
