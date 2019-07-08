@@ -1,6 +1,8 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FilterOption} from '../../models/filter-option';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {AppliedFiltersService} from '../../data/applied-filters.service';
+import {Filter} from '../../models/filter';
 
 @Component({
   selector: 'filter-options',
@@ -9,20 +11,23 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 })
 export class FilterOptionsComponent implements OnInit {
 
-  @Input() allFilterOptions: Array<FilterOption>;
+  private allFilterOptions: Array<FilterOption>;
   private selectedFilterOptions: Array<FilterOption> = new Array<FilterOption>();
 
-  constructor(public thisDialogRef: MatDialogRef<FilterOptionsComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Array<FilterOption>) {
-    this.allFilterOptions = data;
+  constructor(private appliedFiltersService: AppliedFiltersService,
+              public thisDialogRef: MatDialogRef<FilterOptionsComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: Filter) {
+    this.allFilterOptions = data.options;
+    const filterOptions = this.appliedFiltersService.getFilterOptionsByFilterName(data.name);
+    if (filterOptions) {
+      filterOptions.forEach(fo => {this.selectedFilterOptions.push(fo); });
+    }
   }
 
   ngOnInit() {
   }
 
   selectFilterOption(filterOption: FilterOption) {
-    // highlight selected option
-
     this.selectedFilterOptions.push(filterOption);
   }
 
@@ -30,6 +35,10 @@ export class FilterOptionsComponent implements OnInit {
     this.thisDialogRef.close(this.selectedFilterOptions);
   }
   onCancel() {
-    this.thisDialogRef.close(this.selectedFilterOptions);
+    this.thisDialogRef.close();
+  }
+
+  isSelected(filterOption: FilterOption): boolean {
+    return this.selectedFilterOptions.indexOf(filterOption) === -1 ? false : true;
   }
 }

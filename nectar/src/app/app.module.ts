@@ -9,9 +9,9 @@ import {AppliedFiltersComponent} from './components/applied-filters/applied-filt
 import {HttpClientModule} from '@angular/common/http';
 import {FilterOptionsComponent} from './components/filter-options/filter-options.component';
 import {FilterButtonComponent} from './components/filter-button/filter-button.component';
-import {FilterOptionSelectedComponent} from './components/filter-option-selected/filter-option-selected.component';
-import {MatDialogModule} from '@angular/material';
+import {MatButtonModule, MatDialogModule, MatExpansionModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MoreFiltersComponent} from './components/more-filters/more-filters.component';
 
 @NgModule({
   declarations: [
@@ -21,17 +21,19 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     FilterButtonComponent,
     FiltersBarComponent,
     AppliedFiltersComponent,
-    FilterOptionSelectedComponent
+    MoreFiltersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [FilterOptionsComponent]
+  entryComponents: [FilterOptionsComponent, MoreFiltersComponent]
 })
 export class AppModule { }

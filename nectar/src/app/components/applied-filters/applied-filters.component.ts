@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AppliedFiltersService} from '../../data/applied-filters.service';
 import {FilterOption} from '../../models/filter-option';
 
 @Component({
@@ -8,16 +9,26 @@ import {FilterOption} from '../../models/filter-option';
 })
 export class AppliedFiltersComponent implements OnInit {
 
-  @Input() private appliedFilterOptions: Array<FilterOption> = new Array<FilterOption>();
-
-  constructor() {
+  constructor(private appliedFiltersService: AppliedFiltersService) {
 
   }
 
   ngOnInit() {
   }
 
+  removeSelected(filterOption: FilterOption) {
+    this.appliedFiltersService.removeFilterOption(filterOption);
+  }
+
   clearAll() {
-    this.appliedFilterOptions = new Array<FilterOption>();
+    this.appliedFiltersService.clearAll();
+  }
+
+  getAppliedFilterOptions(): Array<FilterOption> {
+    return  this.appliedFiltersService.getAllFilterOptions();
+  }
+
+  isEmpty() {
+    return this.appliedFiltersService.isEmpty();
   }
 }

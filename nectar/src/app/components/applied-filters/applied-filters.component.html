@@ -1,4 +1,13 @@
 <div class="applied-filters-container">
-  Applied Filters: <filter-option-selected *ngFor="let appliedFilter of appliedFilterOptions" [filterOption]="appliedFilter"></filter-option-selected>
-  <button (click)="clearAll()">ClearAll</button>
+  Applied Filters:
+  <div *ngIf="isEmpty() then none else content"></div>
+  <ng-template #content>
+    <div class="applied-filter-option" *ngFor="let appliedFilterOption of getAppliedFilterOptions()">
+      {{appliedFilterOption.title}}
+      <a href="#" class="remove-selected-button" (click)="removeSelected(appliedFilterOption)">x</a>
+    </div>
+    <button class="clear-all-button" (click)="clearAll()">ClearAll</button>
+  </ng-template>
+  <ng-template #none>- none -</ng-template>
+
 </div>

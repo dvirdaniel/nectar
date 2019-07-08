@@ -1,4 +1,6 @@
-<button (click)="showOptions()" class="filter-button">
+<button id="filter-button" class="filter-button" [ngClass]="{'clicked': clicked}">
   {{name}}
   <ng-container *ngIf="selected > 0">({{selected}})</ng-container>
 </button>
+
+

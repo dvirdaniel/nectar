@@ -10,12 +10,10 @@ export class FilterButtonComponent implements OnInit {
   @Input() private name: string;
   @Input() private options: Array<FilterOption>;
   @Input() private selected: number;
+  @Input() private clicked: boolean;
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  showOptions() {
   }
 }
