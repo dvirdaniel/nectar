@@ -9,4 +9,10 @@ describe('FiltersDataService', () => {
     const service: FiltersDataService = TestBed.get(FiltersDataService);
     expect(service).toBeTruthy();
   });
+
+  it('#setForms should set the forms attribute', () => {
+    const service: FiltersDataService = TestBed.get(FiltersDataService);
+
+    expect(service.allFilters.length).toEqual(6);
+  });
 });

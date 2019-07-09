@@ -20,25 +20,10 @@ export class FiltersBarComponent implements OnInit {
   constructor(public dialog: MatDialog,
               private appliedFiltersService: AppliedFiltersService,
               private filtersDataService: FiltersDataService) {
+    this.allFilters = this.filtersDataService.allFilters;
   }
 
   ngOnInit() {
-    this.filtersDataService.getData().subscribe(
-      (result: any) => {
-        Object.entries(result).forEach( f => {
-          const name: string = f[0];
-          const options: Array<FilterOption> = new Array<FilterOption>();
-          Object.values(f[1]).forEach( o => {
-              const filterOption: FilterOption = o;
-              options.push(filterOption);
-            });
-          this.allFilters.push(new Filter(name, options));
-        });
-      },
-      (error: any) => {
-        console.log('Problem occurred while getting filters data', error);
-      }
-    );
   }
 
   wasClicked(filter: Filter) {
@@ -86,16 +71,6 @@ export class FiltersBarComponent implements OnInit {
     return filterOptions ? filterOptions.length : 0;
   }
 
-  getMoreFilters(): Array<Filter> {
-    const moreFilters: Array<Filter> = new Array<Filter>();
-    this.allFilters.forEach( (f, i) => {
-      if (i > 1) {
-        moreFilters.push(f);
-      }
-    });
-    return moreFilters;
-  }
-
   showMoreFilters(event) {
     const dialogRef = this.dialog.open(MoreFiltersComponent, {
       position: {
@@ -105,7 +80,7 @@ export class FiltersBarComponent implements OnInit {
       width: '100%',
       maxHeight: '100%',
       height: '80%',
-      data: this.getMoreFilters()
+      data: this.filtersDataService.getMoreFilters()
     });
 
     dialogRef.afterClosed().subscribe( (result: Array<Filter>) => {
