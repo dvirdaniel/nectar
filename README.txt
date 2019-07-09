@@ -1,6 +1,11 @@
 Documentation:
 I used Angular 8 with Angular Material (for the dialog and expansion panel)
 
+Instructions:
+1. Checkout/Clone project sources
+2. Run npm install
+3. Run ng serve
+
 Data Structure:
 Filter - A class that saves a filter with his name and options.
 Filter Option - A class that saves a filter option with his id and title.
@@ -18,6 +23,6 @@ LogoComponent - A component that handles the logo display.
 MoreFiltersComponent - A component that handles the more filters section (display only on mobile and used as a modal dialog).
 
 Decisions:
-1. I decided to split the task to different areas according to the give screen and create a component to each section.
+1. I decided to split the task to different areas according to the given screen and create a component to each section.
 2. I decided to create 2 services: one to handle the data and another to handle the state of the selected filters.
 3. I decied not to make an emphasize on the design (it is not so pretty).
