@@ -7,7 +7,7 @@
             {{myFilter.name}}
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <button class="filter-option-button" *ngFor="let filterOption of myFilter.options"
+        <button class="more-filter-option-button" *ngFor="let filterOption of myFilter.options"
                 [ngClass]="{'selected': isSelected(filterOption)}"
                 (click)="selectFilterOption(filterOption)">
           {{filterOption.title}}
