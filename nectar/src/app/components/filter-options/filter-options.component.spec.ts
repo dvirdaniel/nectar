@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { FilterOptionsComponent } from './filter-options.component';
+import {FilterOptionsComponent} from './filter-options.component';
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material';
 
 describe('FilterOptionsComponent', () => {
   let component: FilterOptionsComponent;
@@ -8,7 +9,12 @@ describe('FilterOptionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FilterOptionsComponent ]
+      imports: [ MatDialogModule ],
+      declarations: [ FilterOptionsComponent ],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {} }
+      ]
     })
     .compileComponents();
   }));

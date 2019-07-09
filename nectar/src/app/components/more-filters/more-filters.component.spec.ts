@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MoreFiltersComponent } from './more-filters.component';
+import {MoreFiltersComponent} from './more-filters.component';
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef, MatExpansionModule} from '@angular/material';
 
 describe('MoreFiltersComponent', () => {
   let component: MoreFiltersComponent;
@@ -8,7 +9,12 @@ describe('MoreFiltersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MoreFiltersComponent ]
+      imports: [ MatDialogModule, MatExpansionModule ],
+      declarations: [ MoreFiltersComponent ],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: [] },
+        { provide: MatDialogRef, useValue: {} }
+      ]
     })
     .compileComponents();
   }));

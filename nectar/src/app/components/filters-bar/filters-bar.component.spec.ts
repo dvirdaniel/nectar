@@ -1,6 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { FiltersBarComponent } from './filters-bar.component';
+import {FiltersBarComponent} from './filters-bar.component';
+import {FilterButtonComponent} from '../filter-button/filter-button.component';
+import {MatDialog} from '@angular/material';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('FiltersBarComponent', () => {
   let component: FiltersBarComponent;
@@ -8,7 +11,11 @@ describe('FiltersBarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FiltersBarComponent ]
+      imports: [ HttpClientModule ],
+      declarations: [ FiltersBarComponent, FilterButtonComponent ],
+      providers: [
+        { provide: MatDialog, useValue: {} }
+      ]
     })
     .compileComponents();
   }));

@@ -16,7 +16,7 @@ export class MoreFiltersComponent implements OnInit {
 
   constructor(private appliedFiltersService: AppliedFiltersService,
               public thisDialogRef: MatDialogRef<MoreFiltersComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {
+              @Inject(MAT_DIALOG_DATA) public data: Array<Filter>) {
     this.allFilters = data;
     this.appliedFiltersService.getAllFilterOptions().forEach( fo => {
       this.selectedFilterOptions.push(fo);

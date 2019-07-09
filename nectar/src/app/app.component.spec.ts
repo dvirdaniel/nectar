@@ -1,16 +1,28 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import {async, TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {AppComponent} from './app.component';
+import {LogoComponent} from './components/logo/logo.component';
+import {FiltersBarComponent} from './components/filters-bar/filters-bar.component';
+import {AppliedFiltersComponent} from './components/applied-filters/applied-filters.component';
+import {FilterButtonComponent} from './components/filter-button/filter-button.component';
+import {MatDialogModule, MatExpansionModule} from '@angular/material';
+import {HttpClientModule} from '@angular/common/http';
+import {FilterOptionsComponent} from './components/filter-options/filter-options.component';
+import {MoreFiltersComponent} from './components/more-filters/more-filters.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientModule,
+        MatDialogModule,
+        MatExpansionModule,
         RouterTestingModule
       ],
       declarations: [
-        AppComponent
-      ],
+        AppComponent, LogoComponent, FiltersBarComponent, AppliedFiltersComponent, FilterButtonComponent,
+        FilterOptionsComponent, MoreFiltersComponent
+      ]
     }).compileComponents();
   }));
 
@@ -18,18 +30,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'nectar'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('nectar');
-  });
-
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to nectar!');
   });
 });
