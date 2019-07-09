@@ -23,7 +23,11 @@ export class AppliedFiltersService {
 
   public getAllFilterOptions(): Array<FilterOption> {
     const allAppliedFilterOptions = new Array<FilterOption>();
-    Array.from(this._appliedFilterOptions.values()).forEach(value => value.forEach( v => { allAppliedFilterOptions.push(v); }));
+    Array.from(this._appliedFilterOptions.values()).forEach(value => value.forEach( v => {
+      if (allAppliedFilterOptions.indexOf(v) === -1) {
+        allAppliedFilterOptions.push(v);
+      }
+    }));
     return allAppliedFilterOptions;
   }
 
