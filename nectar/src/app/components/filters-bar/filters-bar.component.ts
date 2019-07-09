@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FiltersDataService} from '../../data/filters-data.service';
 import {Filter} from '../../models/filter';
 import {FilterOption} from '../../models/filter-option';
-import {DialogPosition, MatDialog} from '@angular/material';
+import {DialogPosition, MatDialog, MatDialogConfig} from '@angular/material';
 import {FilterOptionsComponent} from '../filter-options/filter-options.component';
 import {AppliedFiltersService} from '../../data/applied-filters.service';
 import {MoreFiltersComponent} from '../more-filters/more-filters.component';
@@ -51,15 +51,22 @@ export class FiltersBarComponent implements OnInit {
 
   showOptions(event: any, filter: Filter) {
     this.clickedFilter = filter;
+
     const dialogPosition: DialogPosition = {
       top: (event.y + 15) + 'px',
       left: (event.x) + 'px'
     };
 
-    const dialogRef = this.dialog.open(FilterOptionsComponent, {
-      position: dialogPosition,
-      data: filter
-    });
+    const dialogConfig: MatDialogConfig = {};
+    dialogConfig.data = filter;
+    dialogConfig.position = dialogPosition;
+
+    if (window.innerWidth < 650) {
+      dialogConfig.width = '100%';
+      dialogConfig.maxWidth = '100%';
+    }
+
+    const dialogRef = this.dialog.open(FilterOptionsComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe( (result: Array<FilterOption>) => {
       if (result) {
